@@ -223,7 +223,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"shop.sol": "IERC20"
+			"shop/IERC20.sol": "IERC20"
 		},
 		"evmVersion": "london",
 		"libraries": {},
@@ -237,7 +237,7 @@
 		"remappings": []
 	},
 	"sources": {
-		"shop.sol": {
+		"shop/IERC20.sol": {
 			"keccak256": "0xb1b76927fbea19d44bc7d3e7dcb439820fd3ae5619812acc3deda90afdba8879",
 			"license": "GPL-3.0",
 			"urls": [
