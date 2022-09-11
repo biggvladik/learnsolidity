@@ -1,6 +1,6 @@
 {
 	"compiler": {
-		"version": "0.8.0+commit.c7dfd78e"
+		"version": "0.8.7+commit.e28d00a7"
 	},
 	"language": "Solidity",
 	"output": {
@@ -209,7 +209,7 @@
 		"compilationTarget": {
 			"coin.sol": "AucEngine"
 		},
-		"evmVersion": "istanbul",
+		"evmVersion": "london",
 		"libraries": {},
 		"metadata": {
 			"bytecodeHash": "ipfs"
@@ -222,11 +222,11 @@
 	},
 	"sources": {
 		"coin.sol": {
-			"keccak256": "0xba9a4c6a64d8acf2b85ae397c0795d613bcf674f176806fa7a88f61795579d24",
+			"keccak256": "0xa000413975270fc43535ddd1bf4212d5155ad215f3363e1296f684e606958ebb",
 			"license": "GPL-3.0",
 			"urls": [
-				"bzz-raw://37cdd077a5fadd5ca3f939e37d8c5e57eacb36409ef50cca647d9b5c532d7dc2",
-				"dweb:/ipfs/Qmer5wko2avCF4Yk9EHewDbYeCgDDzpYqVGoALHHbfWi4A"
+				"bzz-raw://56514087137a5a6463186ddbc88d60dbb22f8c1e88920f60ad3ef361b0e994dd",
+				"dweb:/ipfs/QmUzW7uKZFmzRxsZusUocKkDtsP6JyV6eqZ9XYbjviwyuE"
 			]
 		}
 	},
