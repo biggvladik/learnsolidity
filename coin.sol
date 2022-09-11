@@ -1,36 +1,112 @@
-// SPDX-License-Identifier: GPL-3.0
-
 pragma solidity ^0.8.0;
 
 
-interface IERC20 {
-    function name() external view returns(string memory);
+contract AucEngine {
+    address public owner;
+    uint constant DURATION = 2 days;
+    uint constant FEE = 10;
 
-    function symbol() external view returns(string memory);
-
-    function decimals() external pure returns(uint);
-
-
-    function totalSupply() external view returns(uint);
-
-
-    function balanceOf(address account) external view returns(uint);
-
-    function transfer(address to, uint amount) external;
-
-    function allowance(address owner,address spender) external view returns(uint);
-
-    function approve(address spender,uint amount) external;
+    struct Auction {
+        address payable seller;
+        uint startingPrice;
+        uint finalPrice;
+        uint startAt;
+        uint endsAt;
+        uint discountRate;
+        string item;
+        bool stopped;
 
 
-    function transferFrom(address sender, address recipient, uint amount) external;
+    }
 
 
-    event Transfer(address indexed from, address indexed to, uint amount);
+    Auction[] public auctions;
 
-    event Approve(address indexed owner, address indexed to, uint amount);
-    
+    event AuctionCreated(uint index, string itemName, uint startingPrice, uint duration);
+    event AuctionEnded(uint index,uint finalPrice, address winner);
+
+
+
+
+
+    constructor()  {
+        owner = msg.sender;
+    }
+
+
+
+    function createAuction(uint _startingPrice, uint _discountRate, string calldata _item, uint _duration) external {
+        uint duration = _duration == 0 ? DURATION : _duration;
+
+        require(_startingPrice >= _discountRate * duration,"incorrect starting price");
+
+
+        Auction memory newAuction = Auction({
+            seller: payable(msg.sender),
+            startingPrice: _startingPrice,
+            finalPrice: _startingPrice,
+            discountRate: _discountRate,
+            startAt: block.timestamp,
+            endsAt: block.timestamp + duration,
+            item: _item,
+            stopped: false
+        });
+
+        auctions.push(newAuction);
+
+
+        emit AuctionCreated(auctions.length-1, _item, _startingPrice, duration);
+
+    }
+
+
+
+
+    function getPriceFor(uint index) public view returns(uint) {
+        Auction memory cAuction = auctions[index];
+
+        require(!cAuction.stopped, "stopped!");
+
+        uint elapsed = block.timestamp - cAuction.startAt;
+        uint discount = cAuction.discountRate * elapsed;
+
+        return cAuction.startingPrice - discount;
+    }
+
+
+
+
+
+    function buy(uint index) external payable {
+        Auction storage cAuction = auctions[index];
+
+        require(!cAuction.stopped, "stopped!");
+        require(block.timestamp < cAuction.endsAt, "end!" );
+
+        uint cPrice = getPriceFor(index);
+
+        require(msg.value >= cPrice," not enough money!");
+        cAuction.stopped = true;
+
+        cAuction.finalPrice = cPrice;
+        uint refund = msg.value - cPrice;
+
+        if (refund > 0) {
+            payable(msg.sender).transfer(refund);
+        }
+
+        cAuction.seller.transfer(
+            cPrice - ((cPrice*FEE)/100)
+        );
+
+
+        emit AuctionEnded(index,cPrice,msg.sender);
+
+
+
+    }
+
+
 
 
 }
-

@@ -222,11 +222,10 @@
 	},
 	"sources": {
 		"coin.sol": {
-			"keccak256": "0xa000413975270fc43535ddd1bf4212d5155ad215f3363e1296f684e606958ebb",
-			"license": "GPL-3.0",
+			"keccak256": "0x3a1f605fe39ec66af0b2df3be2ac6310681c93f0f9c1e593da5bfd0258012c5b",
 			"urls": [
-				"bzz-raw://56514087137a5a6463186ddbc88d60dbb22f8c1e88920f60ad3ef361b0e994dd",
-				"dweb:/ipfs/QmUzW7uKZFmzRxsZusUocKkDtsP6JyV6eqZ9XYbjviwyuE"
+				"bzz-raw://36cbfbd1a02bc60b5796e7b1a5074cc1f99b688ee943abd354d5d4a10344ab34",
+				"dweb:/ipfs/QmazHprtjpztMmUe9rnY7Mu4VQVWbbMcaHLiCraK1bd5Aj"
 			]
 		}
 	},
