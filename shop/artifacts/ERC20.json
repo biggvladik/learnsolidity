@@ -53,6 +53,7 @@
 			"approve(address,uint256)": "095ea7b3",
 			"balanceOf(address)": "70a08231",
 			"decimals()": "313ce567",
+			"name()": "06fdde03",
 			"symbol()": "95d89b41",
 			"totalSupply()": "18160ddd",
 			"transfer(address,uint256)": "a9059cbb",
@@ -114,7 +115,7 @@
 			"inputs": [
 				{
 					"internalType": "address",
-					"name": "_owner",
+					"name": "owner",
 					"type": "address"
 				},
 				{
@@ -182,6 +183,19 @@
 				}
 			],
 			"stateMutability": "pure",
+			"type": "function"
+		},
+		{
+			"inputs": [],
+			"name": "name",
+			"outputs": [
+				{
+					"internalType": "string",
+					"name": "",
+					"type": "string"
+				}
+			],
+			"stateMutability": "view",
 			"type": "function"
 		},
 		{
